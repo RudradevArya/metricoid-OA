@@ -1,160 +1,194 @@
-import React from 'react'
-import {Github, Linkedin, Menu} from 'lucide-react'
-// About Me
-// Skills
-// Hobbies & Interests
-// Passions
-// Academic Background
-// Work Experience (if applicable)
-// Certifications (if applicable)
+import React from 'react';
+import { Github, Linkedin, Menu, X, BookOpen, Code, Heart, Briefcase, Award } from 'lucide-react';
 
 const MySite = () => {
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState('aboutme');
 
-    const navigation = [
-        {name: 'About Me', href: '#aboutme'},
-        {name: 'Skills', href: '#skills'},
-        {name: 'Hobbies & Interests', href: '#hobbs'},
-        {name: 'Passions', href: '#pass'},
-        {name: 'Academic Background', href: '#acad'},
-    ];
+  const navigation = [
+    { name: 'About Me', href: '#aboutme', icon: <BookOpen size={20} /> },
+    { name: 'Skills', href: '#skills', icon: <Code size={20} /> },
+    { name: 'Hobbies & Interests', href: '#hobbs', icon: <Heart size={20} /> },
+    { name: 'Passions', href: '#pass', icon: <Heart size={20} /> },
+    { name: 'Academic Background', href: '#acad', icon: <BookOpen size={20} /> },
+    { name: 'Work Experience', href: '#work', icon: <Briefcase size={20} /> },
+    { name: 'Certifications', href: '#cert', icon: <Award size={20} /> },
+  ];
 
-    const projects = [
-        {
-            title: 'EventU',
-            desc: 'An event site for the university',
-            tech: ['AppWrite', 'AWS', 'JS'],
-        },
-        {
-            title: 'LambdaMailer',
-            desc: 'A serverless microSaaS application to send bulk personalised emails',
-            tech: ['AWS', 'JS'],
-        }
-    ];
+  const projects = [
+    {
+      title: 'EventU',
+      desc: 'An event site for the university',
+      tech: ['AppWrite', 'AWS', 'JS'],
+    },
+    {
+      title: 'LambdaMailer',
+      desc: 'A serverless microSaaS application to send bulk personalised emails',
+      tech: ['AWS', 'JS'],
+    },
+  ];
 
-    return (
-        <div className="min-h-screen bg-gray-50">
-          {/* Navigation */}
-          <nav className="bg-white shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between h-16">
-                <div className="flex items-center">
-                  <span className="text-xl font-bold">Your Name</span>
-                </div>
-                
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center space-x-8">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-gray-600 hover:text-gray-900"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-    
-                {/* Mobile menu button */}
-                <div className="md:hidden flex items-center">
-                  <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    {/* {isMenuOpen ? <X size={24} /> : <Menu size={24} />} */}
-                  </button>
-                </div>
-              </div>
-            </div>
-    
-            {/* Mobile Navigation */}
-            {isMenuOpen && (
-              <div className="md:hidden">
-                <div className="px-2 pt-2 pb-3 space-y-1">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="block px-3 py-2 text-gray-600 hover:text-gray-900"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            )}
-          </nav>
-    
-          {/* Hero Section */}
-          <section id="home" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center">
-                <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
-                  Welcome to My Portfolio
-                </h1>
-                <p className="mt-3 text-xl text-gray-500">
-                  I'm a developer passionate about building amazing web experiences
-                </p>
-              </div>
-            </div>
-          </section>
-    
-          {/* About Section */}
-          <section id="about" className="py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-gray-900">About Me</h2>
-              <div className="mt-6 text-gray-600">
-                <p>Your personal bio and experience goes here.</p>
-              </div>
-            </div>
-          </section>
-    
-          {/* Projects Section */}
-          <section id="projects" className="py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-gray-900">Projects</h2>
-              <div className="mt-6 grid gap-6 md:grid-cols-2">
-                {projects.map((project, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-6 shadow-sm">
-                    <h3 className="text-xl font-semibold">{project.title}</h3>
-                    <p className="mt-2 text-gray-600">{project.description}</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {project.tech.map((tech, techIndex) => (
-                        <span
-                          key={techIndex}
-                          className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-    
-          {/* Contact Section */}
-          <section id="contact" className="py-20 bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-gray-900">Contact Me</h2>
-              <div className="mt-6 flex justify-center space-x-6">
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  <Github size={24} />
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      {/* Navigation */}
+      <nav className="fixed w-full bg-white shadow-sm z-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-between items-center h-16">
+            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-500">
+              Rudradev Arya
+            </span>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-8">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="flex items-center space-x-2 text-gray-600 hover:text-blue-500 transition-colors"
+                  onClick={() => setActiveSection(item.href.slice(1))}
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
                 </a>
-                <a href="#" className="text-gray-600 hover:text-gray-900">
-                  <Linkedin size={24} />
-                </a>
-                {/* <a href="#" className="text-gray-600 hover:text-gray-900">
-                  <Mail size={24} />
-                </a> */}
-              </div>
+              ))}
             </div>
-          </section>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-gray-600"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="md:hidden py-4">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="flex items-center space-x-2 px-4 py-2 text-gray-600 hover:bg-gray-50"
+                  onClick={() => {
+                    setActiveSection(item.href.slice(1));
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
-      );
-    };
-    
+      </nav>
+
+      {/* Main Content */}
+      <div className="pt-16">
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-to-r from-blue-500 to-purple-500 text-white">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">
+              Welcome
+            </h1>
+            <p className="text-xl md:text-2xl opacity-90">
+              A backend focused developer passionate about building scalable solutions
+            </p>
+          </div>
+        </section>
+
+        {/* About Me */}
+        <section id="aboutme" className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">About Me</h2>
+            <p className="text-gray-600 leading-relaxed">
+              I'm a backend developer with a passion for building scalable applications.
+            </p>
+          </div>
+        </section>
+
+        {/* Skills */}
+        <section id="skills" className="py-16 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">Skills</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {['JavaScript', 'AWS', 'Node.js', 'Python', 'Docker', 'MongoDB'].map((skill) => (
+                <div key={skill} className="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+                  <span className="text-gray-700">{skill}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Hobbies & Interests */}
+        <section id="hobbs" className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">Hobbies & Interests</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {['Reading', 'Photography', 'Traveling', 'Gaming'].map((hobby) => (
+                <div key={hobby} className="bg-gray-50 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold mb-2 text-gray-700">{hobby}</h3>
+
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Projects */}
+        <section id="projects" className="py-16 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">Projects</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {projects.map((project, index) => (
+                <div key={index} className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  <p className="text-gray-600 mb-4">{project.desc}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="py-16 bg-white">
+          <div className="max-w-4xl mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">Contact</h2>
+            <div className="flex justify-center space-x-6">
+              <a
+                href="https://github.com/RudradevArya/metricoid-OA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-blue-500 transition-colors"
+              >
+                <Github size={28} />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/rudradev-arya/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-blue-500 transition-colors"
+              >
+                <Linkedin size={28} />
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
+};
 
 export default MySite;
-
